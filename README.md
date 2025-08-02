@@ -64,6 +64,9 @@ cd Team-Five-CEAL
 
 *Demo video showcasing the complete HVH experience - from peaceful stillness tracking to the epic confetti celebration at milestone achievements*
 
+### Website Link
+[here](https://sreedevss.me/HVH-Hyperloop-Virtual-Hub)
+
 ## Team Contributions
 - **Sreedev S S**: 
   - Core AFK detection algorithm
