@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>What have you done</title>
-  <link rel="stylesheet" href="styles.css">
   <style>
     body {
       margin: 0;
@@ -13,17 +12,10 @@
     .image-stack img {
       position: absolute;
       width: 100px;
-      transition: transform 0.3s;
-    }
-    #repel-zone {
-      position: absolute;
-      top: 30%;
-      left: 40%;
-      width: 200px;
-      height: 200px;
-      background: rgba(255, 0, 0, 0.1);
-      border: 2px dashed red;
-      z-index: 2;
+      height: 100px;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+      z-index: 1;
     }
     .error-popup {
       width: 250px;
@@ -55,78 +47,79 @@
 </head>
 <body>
   <div class="image-stack" id="stack"></div>
-  <div id="repel-zone"></div>
   <div id="bluescreen">WE ARE LIVING IN HAVIS ERA</div>
-
-  <audio id="errorSound" src="https://www.myinstants.com/media/sounds/windows-error.mp3"></audio>
 
   <script>
     const imageStack = document.getElementById("stack");
-    const repelZone = document.getElementById("repel-zone");
-    const errorSound = document.getElementById("errorSound");
     const blueScreen = document.getElementById("bluescreen");
 
-    // Add 50 random images
-    for (let i = 0; i < 50; i++) {
+    // Custom images
+    const customImages = [
+      "spam/IMG-20250802-WA0002.jpg",
+      "spam/IMG-20250802-WA0003.jpg",
+      "spam/IMG-20250802-WA0004.jpg",
+      "spam/IMG-20250802-WA0005.jpg",
+      "spam/IMG-20250802-WA0006.jpg",
+      "spam/IMG-20250802-WA0007.jpg",
+      "spam/IMG-20250802-WA0008.jpg",
+      "spam/IMG-20250802-WA0009.jpg",
+      "spam/IMG-20250802-WA0010.jpg",
+      "spam/IMG-20250802-WA0011.jpg",
+      "spam/IMG-20250802-WA0012.jpg"
+    ];
+
+    // Add more images to fill the screen (150+)
+    const totalImages = 150;
+    for (let i = 0; i < totalImages; i++) {
       let img = document.createElement("img");
-      const customImages = [
-        "spam/IMG-20250802-WA0002.jpg",
-        "spam/IMG-20250802-WA0003.jpg",
-        "spam/IMG-20250802-WA0004.jpg",
-        "spam/IMG-20250802-WA0005.jpg",
-        "spam/IMG-20250802-WA0006.jpg",
-        "spam/IMG-20250802-WA0007.jpg",
-        "spam/IMG-20250802-WA0008.jpg",
-        "spam/IMG-20250802-WA0009.jpg",
-        "spam/IMG-20250802-WA0010.jpg",
-        "spam/IMG-20250802-WA0011.jpg",
-        "spam/IMG-20250802-WA0012.jpg"
-      ];
-
-
-// Randomly select one:
-img.src = customImages[Math.floor(Math.random() * customImages.length)];
+      img.src = customImages[Math.floor(Math.random() * customImages.length)];
       img.style.top = Math.random() * window.innerHeight + "px";
       img.style.left = Math.random() * window.innerWidth + "px";
       imageStack.appendChild(img);
     }
 
-    // Repel effect
+    // Repel images from mouse position
     document.addEventListener("mousemove", (e) => {
-      const rz = repelZone.getBoundingClientRect();
-      const centerX = rz.left + rz.width / 2;
-      const centerY = rz.top + rz.height / 2;
+      const mouseX = e.clientX;
+      const mouseY = e.clientY;
 
       document.querySelectorAll(".image-stack img").forEach(img => {
         const imgX = img.offsetLeft + 50;
         const imgY = img.offsetTop + 50;
-        const dist = Math.hypot(centerX - imgX, centerY - imgY);
+        const dist = Math.hypot(mouseX - imgX, mouseY - imgY);
 
         if (dist < 150) {
-          let angle = Math.atan2(imgY - centerY, imgX - centerX);
-          img.style.transform = `translate(${Math.cos(angle) * 50}px, ${Math.sin(angle) * 50}px)`;
+          let angle = Math.atan2(imgY - mouseY, imgX - mouseX);
+          img.style.transform = `translate(${Math.cos(angle) * 80}px, ${Math.sin(angle) * 80}px)`;
         } else {
-          img.style.transform = "translate(0,0)";
+          img.style.transform = "translate(0, 0)";
         }
       });
     });
 
-    // Click triggers error popups + bluescreen
+    // On click: spawn many error popups + sound per popup
     document.addEventListener("click", () => {
-      errorSound.play();
-      for (let i = 0; i < 5; i++) {
+      const popupCount = 15; // Increase to overwhelm
+
+      for (let i = 0; i < popupCount; i++) {
         let popup = document.createElement("div");
         popup.className = "error-popup";
-        popup.style.top = Math.random() * window.innerHeight + "px";
-        popup.style.left = Math.random() * window.innerWidth + "px";
+        popup.style.top = Math.random() * (window.innerHeight - 100) + "px";
+        popup.style.left = Math.random() * (window.innerWidth - 260) + "px";
         popup.innerHTML = `
           <b>❌ Error</b><br>
           HAVIS.exe has stopped<br>
           responding.
         `;
+
         document.body.appendChild(popup);
+
+        // Play sound per popup
+        const sound = new Audio("https://www.myinstants.com/media/sounds/windows-error.mp3");
+        sound.play();
       }
 
+      // Blue screen after delay
       setTimeout(() => {
         blueScreen.style.display = "flex";
       }, 2500);
