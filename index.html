@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>HVH - Signup</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
   <div id="logo">HVH</div>
   <div class="container">
     <h1>Join Hyperloop Virtual Hub</h1>
-    <form id="signupForm">
-      <input type="text" id="username" autocomplete="new-password"  name="new-password" placeholder="Enter username" />
+    <form id="signupForm" autocomplete="off">
+      <input type="text" id="username" name="username" autocomplete="off" placeholder="Enter username" />
       <p id="usernameMsg" class="msg"></p>
 
-      <input type="password" id="password" autocomplete="new-password"  name="new-password" placeholder="Enter password" />
+      <input type="password" id="password" name="password" autocomplete="off" placeholder="Enter password" />
       <p id="passwordMsg" class="msg"></p>
 
       <button id="signupBtn" type="submit">Sign Up</button>
@@ -24,4 +26,5 @@
   <script src="script.js"></script>
   <script src="hvh.js"></script>
 </body>
+
 </html>
