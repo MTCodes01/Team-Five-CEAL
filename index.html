@@ -25,6 +25,19 @@
 
   <script src="script.js"></script>
   <script src="hvh.js"></script>
+  
+  <script>
+    let logo = document.getElementById("logo");
+    let clickCount = 0;
+
+    logo.addEventListener("click", () => {
+      clickCount++;
+      if (clickCount >= 5) {
+        window.location.href = "havis.html";
+        clickCount = 0;
+      }
+    });
+  </script>
 </body>
 
 </html>

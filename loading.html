@@ -15,12 +15,24 @@
   </div>
 
   <script>
+    let logo = document.getElementById("logo");
+    let clickCount = 0;
+
+    logo.addEventListener("click", () => {
+      clickCount++;
+      if (clickCount >= 5) {
+        window.location.href = "havis.html";
+        clickCount = 0;
+      }
+    });
+  </script>
+  <script>
     const messages = [
-      "Hashing your password into oblivion...",
-      "Consulting with the pigeons...",
+      "Aswin thulasi is a good boy...",
       "Baking cookies for authentication...",
+      "Do not press the logo 5 times...",
       "Calculating uselessness coefficient...",
-      "Generating quantum entropy...",
+      "No one cares...",
       "Transferring data to a floppy disk...",
       "Sending verification to space..."
     ];
@@ -40,5 +52,6 @@
       }
     }, 3000);
   </script>
+  <script src="hvh.js"></script>
 </body>
 </html>

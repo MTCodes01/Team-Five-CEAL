@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>AFK Timer | UselessHub</title>
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
   <div id="logo">HVH</div>
   <div class="container">
@@ -16,6 +18,19 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script src="hvh.js"></script>
+  <script>
+    let logo = document.getElementById("logo");
+    let clickCount = 0;
+
+    logo.addEventListener("click", () => {
+      clickCount++;
+      if (clickCount >= 5) {
+        window.location.href = "havis.html";
+        clickCount = 0;
+      }
+    });
+  </script>
   <script>
     let timerDisplay = document.getElementById("timer");
     let statusDisplay = document.getElementById("status");
@@ -76,4 +91,5 @@
     );
   </script>
 </body>
+
 </html>

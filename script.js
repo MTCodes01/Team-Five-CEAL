@@ -112,6 +112,7 @@ logo.addEventListener("click", () => {
   clickCount++;
   if (clickCount >= 5) {
     window.location.href = "havis.html";
+    clickCount = 0;
   }
 });
 
