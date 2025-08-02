@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>HAVIS MODE</title>
+  <title>What have you done</title>
   <link rel="stylesheet" href="styles.css">
   <style>
     body {
@@ -69,7 +69,23 @@
     // Add 50 random images
     for (let i = 0; i < 50; i++) {
       let img = document.createElement("img");
-      img.src = "https://picsum.photos/100?random=" + i;
+      const customImages = [
+        "spam/IMG-20250802-WA0002.jpg",
+        "spam/IMG-20250802-WA0003.jpg",
+        "spam/IMG-20250802-WA0004.jpg",
+        "spam/IMG-20250802-WA0005.jpg",
+        "spam/IMG-20250802-WA0006.jpg",
+        "spam/IMG-20250802-WA0007.jpg",
+        "spam/IMG-20250802-WA0008.jpg",
+        "spam/IMG-20250802-WA0009.jpg",
+        "spam/IMG-20250802-WA0010.jpg",
+        "spam/IMG-20250802-WA0011.jpg",
+        "spam/IMG-20250802-WA0012.jpg"
+      ];
+
+
+// Randomly select one:
+img.src = customImages[Math.floor(Math.random() * customImages.length)];
       img.style.top = Math.random() * window.innerHeight + "px";
       img.style.left = Math.random() * window.innerWidth + "px";
       imageStack.appendChild(img);
