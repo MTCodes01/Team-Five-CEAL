@@ -9,7 +9,7 @@
 <body>
   <div class="container">
     <h2>Signing you up...</h2>
-    <img src="assets/spinner.gif" alt="Loading..." style="width: 100px;" />
+    <img src="assets/aswin-pranay.png" class="loading" alt="Loading..." style="width: 100px;" />
     <p id="statusMsg">Please wait...</p>
   </div>
 
@@ -24,9 +24,19 @@
       "Sending verification to space..."
     ];
 
-    setInterval(() => {
+    let count = 0;
+
+    const timer = setInterval(() => {
       const msg = messages[Math.floor(Math.random() * messages.length)];
       document.getElementById("statusMsg").textContent = msg;
+      count++;
+      if (count >= 5) {
+      clearInterval(timer);
+      document.getElementById("statusMsg").textContent = "Almost done...";
+      setTimeout(() => {
+        window.location.href = 'do_nothing.html';
+      }, 2000);
+      }
     }, 3000);
   </script>
 </body>

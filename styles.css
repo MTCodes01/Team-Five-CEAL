@@ -1,6 +1,6 @@
 
 * {
-  cursor: url("assets/Havis-praney.png") 20 8, auto;
+  cursor: url("assets/Havis-pranay.png") 20 8, auto;
 
 }
 
@@ -71,4 +71,19 @@ button {
 }
 #logo:active {
   transform: scale(1.2);
+}
+
+.loading {
+  width: 100px;
+  height: 100px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
