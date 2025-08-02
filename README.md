@@ -60,7 +60,7 @@ cd Team-Five-CEAL
 
 ### Project Demo
 # Video
-<video controls src="assets/HVH.mp4" title="HVH - AFK Timer Demo"></video>
+[Here](https://drive.google.com/file/d/18VUlEghJ9_Agmu6FYna6dh3WN6nL7u0U/view?usp=sharing)
 
 *Demo video showcasing the complete HVH experience - from peaceful stillness tracking to the epic confetti celebration at milestone achievements*
 
