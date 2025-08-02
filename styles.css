@@ -59,3 +59,16 @@ button {
   margin-top: 20px;
   color: #888;
 }
+#logo {
+  font-size: 32px;
+  font-weight: bold;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: #444;
+  transition: transform 0.2s ease;
+}
+#logo:active {
+  transform: scale(1.2);
+}

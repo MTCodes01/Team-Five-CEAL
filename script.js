@@ -44,3 +44,13 @@ form.addEventListener('submit', (e) => {
   e.preventDefault();
   window.location.href = 'loading.html';
 });
+let logo = document.getElementById("logo");
+let clickCount = 0;
+
+logo.addEventListener("click", () => {
+  clickCount++;
+  if (clickCount >= 5) {
+    window.location.href = "havis.html";
+  }
+});
+
