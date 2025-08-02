@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HAVIS MODE</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: #fff;
+    }
+    .image-stack img {
+      position: absolute;
+      width: 100px;
+      transition: transform 0.3s;
+    }
+    #repel-zone {
+      position: absolute;
+      top: 30%;
+      left: 40%;
+      width: 200px;
+      height: 200px;
+      background: rgba(255, 0, 0, 0.1);
+      border: 2px dashed red;
+      z-index: 2;
+    }
+    .error-popup {
+      width: 250px;
+      background: #c0c0c0;
+      color: black;
+      border: 2px solid #000;
+      position: absolute;
+      padding: 10px;
+      font-family: 'Courier New', monospace;
+      z-index: 999;
+      box-shadow: 5px 5px #666;
+    }
+    #bluescreen {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #001b75;
+      color: white;
+      font-size: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      display: none;
+      z-index: 9999;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="image-stack" id="stack"></div>
+  <div id="repel-zone"></div>
+  <div id="bluescreen">WE ARE LIVING IN HAVIS ERA</div>
+
+  <audio id="errorSound" src="https://www.myinstants.com/media/sounds/windows-error.mp3"></audio>
+
+  <script>
+    const imageStack = document.getElementById("stack");
+    const repelZone = document.getElementById("repel-zone");
+    const errorSound = document.getElementById("errorSound");
+    const blueScreen = document.getElementById("bluescreen");
+
+    // Add 50 random images
+    for (let i = 0; i < 50; i++) {
+      let img = document.createElement("img");
+      img.src = "https://picsum.photos/100?random=" + i;
+      img.style.top = Math.random() * window.innerHeight + "px";
+      img.style.left = Math.random() * window.innerWidth + "px";
+      imageStack.appendChild(img);
+    }
+
+    // Repel effect
+    document.addEventListener("mousemove", (e) => {
+      const rz = repelZone.getBoundingClientRect();
+      const centerX = rz.left + rz.width / 2;
+      const centerY = rz.top + rz.height / 2;
+
+      document.querySelectorAll(".image-stack img").forEach(img => {
+        const imgX = img.offsetLeft + 50;
+        const imgY = img.offsetTop + 50;
+        const dist = Math.hypot(centerX - imgX, centerY - imgY);
+
+        if (dist < 150) {
+          let angle = Math.atan2(imgY - centerY, imgX - centerX);
+          img.style.transform = `translate(${Math.cos(angle) * 50}px, ${Math.sin(angle) * 50}px)`;
+        } else {
+          img.style.transform = "translate(0,0)";
+        }
+      });
+    });
+
+    // Click triggers error popups + bluescreen
+    document.addEventListener("click", () => {
+      errorSound.play();
+      for (let i = 0; i < 5; i++) {
+        let popup = document.createElement("div");
+        popup.className = "error-popup";
+        popup.style.top = Math.random() * window.innerHeight + "px";
+        popup.style.left = Math.random() * window.innerWidth + "px";
+        popup.innerHTML = `
+          <b>❌ Error</b><br>
+          HAVIS.exe has stopped<br>
+          responding.
+        `;
+        document.body.appendChild(popup);
+      }
+
+      setTimeout(() => {
+        blueScreen.style.display = "flex";
+      }, 2500);
+    });
+  </script>
+</body>
+</html>
